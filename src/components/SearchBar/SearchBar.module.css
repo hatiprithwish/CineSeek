@@ -1,0 +1,24 @@
+.searchContainer {
+  border-radius: 2px;
+  border: 1px solid rgba(192, 196, 204, 1);
+  background-color: var(--Navy-0, #fff);
+  display: flex;
+  gap: 8px;
+  margin: auto 0;
+  padding: 10px;
+}
+.searchIcon {
+  aspect-ratio: 1;
+  object-fit: auto;
+  object-position: center;
+  width: 16px;
+}
+.input {
+  border: none;
+  background: transparent;
+  flex: 1;
+}
+
+.input:focus {
+  outline: none;
+}
