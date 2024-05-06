@@ -11,14 +11,6 @@ const HeroSection = () => {
 
   const fetchData = async () => {
     setIsLoading(true);
-    const options = {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3NDNhYjZiYmNhMWVmYzc3NmM2MDhlNjc5OWQ5MjhhNSIsInN1YiI6IjY2MzViYTczNjNlNmZiMDEyNjZlOTcwZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.H1a4nZFrPsxyEJPDraRgDX8CkYFJeqMj476iImJnskg",
-      },
-    };
 
     try {
       const response = await fetch(
