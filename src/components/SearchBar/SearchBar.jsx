@@ -24,8 +24,8 @@ const SearchBar = () => {
     try {
       // console.log(inputValue);
       const response = await fetch(
-        `https://api.themoviedb.org/3/search/movie?query=${inputValue}&include_adult=false&language=en-US&page=1`,
-        options
+        `https://api.themoviedb.org/3/search/movie?api_key=067f167048aba054e8faaf87d2da84ba&query=${inputValue}&include_adult=false&language=en-US&page=1`
+        // options
       );
       const searchMovies = await response.json();
 

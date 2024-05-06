@@ -22,8 +22,8 @@ const HeroSection = () => {
 
     try {
       const response = await fetch(
-        "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1",
-        options
+        "https://api.themoviedb.org/3/movie/now_playing?api_key=067f167048aba054e8faaf87d2da84ba"
+        // options
       );
       const movies = await response.json();
 
