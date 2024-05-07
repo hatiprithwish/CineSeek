@@ -1,11 +1,12 @@
 import Hero from "../components/Hero";
-import HeroSection from "../components/HeroSection/HeroSection";
+import NowPlaying from "../components/NowPlaying";
 
 const HomePage = () => {
   return (
     <div className="w-full h-auto flex flex-col items-center justify-center ">
-      {/* <HeroSection /> */}
       <Hero />
+
+      <NowPlaying />
     </div>
   );
 };
