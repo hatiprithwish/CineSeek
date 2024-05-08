@@ -5,6 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import Footer from "./components/Footer";
 import AuthPage from "./pages/AuthPage";
+import FavoritesPage from "./pages/FavoritesPage";
 
 function App() {
   return (
@@ -13,10 +14,11 @@ function App() {
         {/* <div className="max-w-[90rem] mx-auto"> */}
         <Navbar />
 
-        <main className="mt-28 px-4 md:px-16 w-full">
+        <main className="mt-28 px-4 md:px-16 w-full flex-1">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/auth" element={<AuthPage />} />
+            <Route path="/favorites" element={<FavoritesPage />} />
           </Routes>
         </main>
 

@@ -1,27 +1,28 @@
 import { useEffect, useState } from "react";
-import { useSearchData } from "../store/SearchDataProvider";
 
 const SearchBar = () => {
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const { setSearchData } = useSearchData();
-
-  const handleKeyDown = () => {};
-
   const fetchSearchedMovies = async () => {
     setIsLoading(true);
 
     try {
-      // console.log(inputValue);
+      const options = {
+        method: "GET",
+        headers: {
+          accept: "application/json",
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNjdmMTY3MDQ4YWJhMDU0ZThmYWFmODdkMmRhODRiYSIsInN1YiI6IjY2MzViYTczNjNlNmZiMDEyNjZlOTcwZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.e3slOiAysfyE595qtYDKADwIRBcYb4uKk8Lr0TXQDJw",
+        },
+      };
       const response = await fetch(
-        `https://api.themoviedb.org/3/search/movie?api_key=067f167048aba054e8faaf87d2da84ba&query=${inputValue}&include_adult=false&language=en-US&page=1`
-        // options
+        `https://api.themoviedb.org/3/search/movie?query=${inputValue}&include_adult=false&language=en-US`,
+        options
       );
       const searchMovies = await response.json();
 
       // console.log(searchMovies);
-      setSearchData(searchMovies);
     } catch (error) {
       console.log(`Failed to search movie: ${error.message}`);
     } finally {

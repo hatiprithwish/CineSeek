@@ -2,12 +2,17 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import SearchBar from "../SearchBar";
 import { Heart } from "lucide-react";
 import { motion } from "framer-motion";
+import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { isFavVisible } from "../../redux/favoriteSlice";
 
 const Navbar = () => {
+  const [showFav, setShowFav] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const user = localStorage.getItem("user");
-  const cartItems = [1, 2, 3, 10];
+  const favoriteItems = useSelector((state) => state.favorite.movies);
+  const dispatch = useDispatch();
 
   const handleLogout = () => {
     localStorage.removeItem("user");
@@ -27,12 +32,9 @@ const Navbar = () => {
 
         <SearchBar />
 
-        <div
-          className="relative"
-          // onClick={showCart}
-        >
+        <div className="relative" onClick={() => dispatch(isFavVisible(true))}>
           <Heart className="text-textColor text-2xl  cursor-pointer" />
-          {cartItems && cartItems.length > 0 && (
+          {favoriteItems && favoriteItems.length > 0 && (
             <motion.div
               initial={{ opacity: 0, scale: 0.6 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -40,7 +42,7 @@ const Navbar = () => {
               className="shadow-xl flex-col absolute -top-2 -right-2 w-5 h-5 rounded-full bg-cartNumBg flex items-center justify-center"
             >
               <p className="text-xs text-white font-semibold">
-                {cartItems.length}
+                {favoriteItems.length}
               </p>
             </motion.div>
           )}

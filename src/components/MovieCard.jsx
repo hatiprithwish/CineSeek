@@ -1,7 +1,11 @@
 import { motion } from "framer-motion";
 import { Heart, Star } from "lucide-react";
+import { useDispatch } from "react-redux";
+import { addMovie } from "../redux/favoriteSlice";
 
 const MovieCard = ({ movie }) => {
+  const dispatch = useDispatch();
+
   return (
     <>
       <div className="w-275 min-w-[275px] md:w-300 md:min-w-[300px]  bg-cardOverlay rounded-lg py-2 px-4 my-12 backdrop-blur-lg hover:drop-shadow-lg flex flex-col items-center justify-evenly relative">
@@ -18,8 +22,10 @@ const MovieCard = ({ movie }) => {
           </motion.div>
           <motion.div
             whileTap={{ scale: 0.75 }}
-            className="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center cursor-pointer hover:shadow-md -mt-8"
-            onClick={() => {}}
+            className="w-7 h-7 rounded-full bg-red-600 flex items-center justify-center cursor-pointer hover:shadow-md -mt-8 px-1 py-2"
+            onClick={() => {
+              dispatch(addMovie(movie));
+            }}
           >
             <Heart color="#fff" />
           </motion.div>
