@@ -18,7 +18,6 @@ const ByGenre = () => {
           `https://api.themoviedb.org/3/genre/movie/list?api_key=067f167048aba054e8faaf87d2da84ba`
         );
         const genreList = await response.json();
-        // console.log(genreList.genres);
         setGenres(genreList.genres);
       } catch (error) {
         console.log(`Error in fetching movies: ${error.message}`);
@@ -49,7 +48,6 @@ const ByGenre = () => {
           options
         );
         const movieList = await response.json();
-        console.log(movieList);
         setMovies(movieList.results);
       } catch (error) {
         console.log(`Error in fetching movies: ${error.message}`);

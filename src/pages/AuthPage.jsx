@@ -6,13 +6,13 @@ const AuthPage = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
 
   return (
-    <>
+    <section className="h-screen">
       {showLoginForm ? (
         <Login setShowLoginForm={setShowLoginForm} />
       ) : (
         <Signup setShowLoginForm={setShowLoginForm} />
       )}
-    </>
+    </section>
   );
 };
 

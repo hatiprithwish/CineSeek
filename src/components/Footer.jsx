@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const footerLinks = [
   {
@@ -31,11 +31,23 @@ const footerLinks = [
 ];
 
 const Footer = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   return (
-    <footer className="flex flex-col text-black-100 mt-5 border-t border-gray-400">
+    <footer
+      className={`${
+        location.pathname === "/auth" ? "hidden" : "flex"
+      } flex-col text-black-100 mt-5 border-t border-gray-400`}
+    >
       <div className="flex max-md:flex-col flex-wrap justify-between gap-5 sm:px-16 px-6 py-10">
         <div className="flex flex-col justify-start items-start gap-6">
-          <img src="/logo.png" alt="logo" className="w-36 h-auto" />
+          <img
+            src="/logo.png"
+            alt="logo"
+            className="w-36 h-auto cursor-pointer"
+            onClick={() => navigate("/")}
+          />
           <p className="text-base text-gray-700">
             CineSeek 2023 <br />
             All Rights Reserved &copy;

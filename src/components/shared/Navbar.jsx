@@ -1,9 +1,10 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SearchBar from "../SearchBar";
 import { Heart } from "lucide-react";
 import { motion } from "framer-motion";
 
 const Navbar = () => {
+  const location = useLocation();
   const navigate = useNavigate();
   const user = localStorage.getItem("user");
   const cartItems = [1, 2, 3, 10];
@@ -14,7 +15,11 @@ const Navbar = () => {
   };
 
   return (
-    <header className="fixed z-50 w-screen p-3 px-4 md:p-6 md:px-16 bg-primary">
+    <header
+      className={`${
+        location.pathname === "/auth" ? "hidden" : "block"
+      } fixed z-50 w-screen p-3 px-4 md:p-6 md:px-16 bg-primary`}
+    >
       <div className="hidden sm:flex w-full h-full items-center justify-between gap-8">
         <Link to={"/"}>
           <img src="/logo.png" className="w-36 h-auto" alt="logo" />
