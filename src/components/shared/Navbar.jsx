@@ -1,14 +1,18 @@
-import { Link } from "react-router-dom";
-import { useIsModalOpen } from "../../store/ModalProvider";
+import { Link, useNavigate } from "react-router-dom";
 import SearchBar from "../SearchBar";
 import { Heart } from "lucide-react";
 import { motion } from "framer-motion";
 
 const Navbar = () => {
-  const { showModal } = useIsModalOpen();
+  const navigate = useNavigate();
+  const user = localStorage.getItem("user");
   const cartItems = [1, 2, 3, 10];
 
-  console.log(showModal);
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    navigate("/");
+  };
+
   return (
     <header className="fixed z-50 w-screen p-3 px-4 md:p-6 md:px-16 bg-primary">
       <div className="hidden sm:flex w-full h-full items-center justify-between gap-8">
@@ -36,15 +40,17 @@ const Navbar = () => {
             </motion.div>
           )}
         </div>
-
         <motion.div
           initial={{ opacity: 0, scale: 0.6 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.6 }}
           className="px-4 py-2 flex items-center gap-3 cursor-pointer hover:text-orange-600 text-textColor text-base"
-          // onClick={logout}
         >
-          Logout
+          {user ? (
+            <button onClick={handleLogout}>Logout</button>
+          ) : (
+            <button onClick={() => navigate("/auth")}>Signup</button>
+          )}
         </motion.div>
       </div>
     </header>
