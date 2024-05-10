@@ -19,6 +19,10 @@ const Navbar = () => {
     navigate("/");
   };
 
+  const handleFavClick = () => {
+    user ? dispatch(isFavVisible(true)) : navigate("/auth");
+  };
+
   return (
     <header
       className={`${
@@ -32,7 +36,7 @@ const Navbar = () => {
 
         <SearchBar />
 
-        <div className="relative" onClick={() => dispatch(isFavVisible(true))}>
+        <div className="relative" onClick={handleFavClick}>
           <Heart className="text-textColor text-2xl  cursor-pointer" />
           {favoriteItems && favoriteItems.length > 0 && (
             <motion.div
