@@ -10,9 +10,19 @@ export const favoriteSlice = createSlice({
   initialState,
   reducers: {
     addMovie: (state, action) => {
-      state.movies.push(action.payload);
+      const existingMovie = state.movies.find(
+        (movie) => movie.id === action.payload.id
+      );
+      if (!existingMovie) {
+        state.movies.push(action.payload);
+      }
     },
-    removeMovie: (state) => {
+    removeMovie: (state, action) => {
+      state.movies = state.movies.filter(
+        (movie) => movie.id !== action.payload
+      );
+    },
+    clearMovies: (state) => {
       state.movies = [];
     },
     isFavVisible: (state, action) => {
@@ -21,6 +31,7 @@ export const favoriteSlice = createSlice({
   },
 });
 
-export const { addMovie, isFavVisible, removeMovie } = favoriteSlice.actions;
+export const { addMovie, isFavVisible, removeMovie, clearMovies } =
+  favoriteSlice.actions;
 
 export default favoriteSlice.reducer;

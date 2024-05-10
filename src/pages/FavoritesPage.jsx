@@ -1,13 +1,13 @@
 import { motion } from "framer-motion";
-import { Ban, MoveLeft, MoveRight } from "lucide-react";
+import { Ban, MoveRight } from "lucide-react";
 import FavItem from "../components/FavItem";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { isFavVisible, removeMovie } from "../redux/favoriteSlice";
+import { isFavVisible, clearMovies } from "../redux/favoriteSlice";
 
 const FavoritesPage = () => {
   const [flag, setFlag] = useState(1);
-  const [tot, setTot] = useState(0);
+
   const favoriteItems = useSelector((state) => state.favorite.movies);
   const dispatch = useDispatch();
   const user = localStorage.getItem("user");
@@ -23,7 +23,7 @@ const FavoritesPage = () => {
         <motion.p
           whileTap={{ scale: 0.75 }}
           className="flex items-center gap-2 p-1 px-2 my-2 bg-gray-100 rounded-md hover:shadow-md  cursor-pointer text-textColor text-base"
-          onClick={() => dispatch(removeMovie())}
+          onClick={() => dispatch(clearMovies())}
         >
           <Ban size={16} /> Clear
         </motion.p>
@@ -44,12 +44,7 @@ const FavoritesPage = () => {
             {favoriteItems &&
               favoriteItems.length > 0 &&
               favoriteItems.map((item) => (
-                <FavItem
-                  key={item.id}
-                  item={item}
-                  setFlag={setFlag}
-                  flag={flag}
-                />
+                <FavItem key={item.id} item={item} />
               ))}
           </div>
         </div>
@@ -57,7 +52,7 @@ const FavoritesPage = () => {
         <div className="w-full h-full flex flex-col items-center justify-center gap-6">
           <img src="./emptyCart.svg" className="w-300" alt="" />
           <p className="text-xl text-textColor font-semibold">
-            Add some items to your cart
+            Add some items to your list
           </p>
         </div>
       )}
